@@ -1,11 +1,8 @@
 services:
   - type: web
-    name: MyBackendService
+    name: flux-ai-backend
     env: node
+    rootDir: backend
     buildCommand: npm install
-    runCommand: npm start
+    startCommand: node server.js
     plan: free
-    routes:
-      - src: /
-        dest: /index.js
-    publish: ./backend

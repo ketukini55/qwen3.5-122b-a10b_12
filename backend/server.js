@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -230,7 +230,12 @@ app.get('/api/status/:taskId', async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Flux AI Backend running on port ${PORT}`);
   console.log(`📝 API Key configured: ${process.env.FLUX_API_KEY ? 'Yes' : 'No'}`);
+});
+
+server.on('error', (err) => {
+  console.error(`❌ Failed to start server: ${err.message}`);
+  process.exit(1);
 });
