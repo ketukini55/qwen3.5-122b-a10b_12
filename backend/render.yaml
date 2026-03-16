@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: flux-ai-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: FLUX_API_KEY
+        sync: false
+      - key: FLUX_API_URL
+        value: https://api.bfl.ml/v1
+      - key: FRONTEND_URL
+        sync: false
