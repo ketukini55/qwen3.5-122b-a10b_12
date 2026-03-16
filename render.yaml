@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: MyBackendService
+    env: node
+    buildCommand: npm install
+    runCommand: npm start
+    plan: free
+    routes:
+      - src: /
+        dest: /index.js
+    publish: ./backend
